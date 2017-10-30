@@ -9,7 +9,11 @@
 <div>
     <h4>Image</h4>
     <hr />
+    <div class="form-group">
+        <img name="image" id="image" src="@ViewBag.ImageUrl" alt="My Picture" />
+    </div>
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
@@ -32,3 +36,5 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+

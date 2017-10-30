@@ -64,7 +64,28 @@ namespace ImageFileUpload.Controllers
 
         public ActionResult Details(int? id)
         {
-            var image = context.Images.Where(i => i.Id.Equals(id));
+            Image image = context.Images.Where(i => i.Id == id).FirstOrDefault();
+            string imagePath = "~/Images/No-image-available.jpg";
+            if (image != null)
+            {
+                if (System.IO.File.Exists(Server.MapPath(image.ImagePath)))
+                {
+                    imagePath = Server.MapPath(image.ImagePath);
+                }
+
+            }
+            using (System.Drawing.Image img = System.Drawing.Image.FromFile(imagePath))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    img.Save(m, img.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    string base64String = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    ViewBag.ImageUrl = base64String;
+                }
+            }
 
             return View("Details", image);
 
