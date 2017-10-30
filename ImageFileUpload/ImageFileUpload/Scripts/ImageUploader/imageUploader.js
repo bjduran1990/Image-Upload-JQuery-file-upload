@@ -4,10 +4,9 @@ $(function () {
     var ul = $('#upload ul');
     var noImage = '../Images/No-image-available.jpg';
     var currentImage = '';
-
+    var jqXHRData;
 
     $('#drop a').on('click', onclickhandler);
-
     
     function onclickhandler() { 
         $(this).parent().find('#imageUploader').click();
@@ -31,8 +30,8 @@ $(function () {
                 //check if file is a gif,jpeg or png
                 var file = data.files[0];
                 var fileType = file["type"];
-                var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-                if ($.inArray(fileType, ValidImageTypes) < 0) {
+                var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                if ($.inArray(fileType, validImageTypes) < 0) {
                     // invalid file type code goes here.
                     alert('not valid');
                 }
@@ -65,7 +64,7 @@ $(function () {
                     tpl.find('span').click(function () {
 
                         if (tpl.hasClass('working')) {
-                            jqXHRData.abort();
+                            jqXHR.abort();
                         }
 
                         tpl.fadeOut(function () {
