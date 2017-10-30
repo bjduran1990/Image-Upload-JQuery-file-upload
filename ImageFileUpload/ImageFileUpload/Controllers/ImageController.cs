@@ -65,7 +65,7 @@ namespace ImageFileUpload.Controllers
         public ActionResult Details(int? id)
         {
             Image image = context.Images.Where(i => i.Id == id).FirstOrDefault();
-            string imagePath = "~/Images/No-image-available.jpg";
+            string imagePath = Server.MapPath("~/Images/No-image-available.jpg");
             if (image != null)
             {
                 if (System.IO.File.Exists(Server.MapPath(image.ImagePath)))

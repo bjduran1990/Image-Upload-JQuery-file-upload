@@ -43,7 +43,7 @@ $(function () {
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('#image').attr('src', e.target.result);
-                        }
+                        };
                         reader.readAsDataURL(data.files[0]);
                     }
                     var tpl = $('<li class="working"><p></p><span></span></li>');
