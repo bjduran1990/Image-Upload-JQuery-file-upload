@@ -20,6 +20,7 @@ namespace ImageFileUpload.Controllers
         }
 
         [HttpPost]
+        //new comment
         public ActionResult UploadImage(HttpPostedFileBase file,Image image, string command)
         {
             string tempFolder = Server.MapPath("~/tempFolder/");
